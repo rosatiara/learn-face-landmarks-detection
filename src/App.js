@@ -13,9 +13,12 @@ TODO:
 11. Add drawMesh to detect function
 */
 
-
-import logo from './logo.svg';
+// importing dependencies needed
+import React, {useRef} from 'react';
 import './App.css';
+import * as tf from "@tensorflow/tfjs";
+import * as facemesh from "@tensorflow-models/facemesh";
+import Webcam from "react-webcam";
 
 function App() {
   return (
