@@ -3,8 +3,8 @@ TODO:
 1. Install dependencies DONE
 2. Import dependencies DONE
 3. Setup webcam and canvas DONE
-4. Define references to those
-5. Load facemesh
+4. Define references to those DONE
+5. Load facemesh DONE
 6. Detect function
 7. Drawing utilities
 8. Load triangulation
@@ -24,6 +24,13 @@ function App() {
   // references
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+
+  // load facemesh
+  const loadFacemesh = async()=>{
+    const net = await facemesh.load({
+      inputResolution:{width:640, height:480}, scale:0.8
+    })
+  }
 
   return (
     <div className="App">
