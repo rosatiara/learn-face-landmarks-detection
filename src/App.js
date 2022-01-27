@@ -5,12 +5,12 @@ TODO:
 3. Setup webcam and canvas DONE
 4. Define references to those DONE
 5. Load facemesh DONE
-6. Detect function
-7. Drawing utilities
-8. Load triangulation
-9. Setup triangle path
-10. Setup point drawing
-11. Add drawMesh to detect function
+6. Detect function DONE
+7. Drawing utilities DONE
+8. Load triangulation DONE
+9. Setup triangle path DONE
+10. Setup point drawing DONE
+11. Add drawMesh to detect function DONE
 */
 
 // importing dependencies needed
