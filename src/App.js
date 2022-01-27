@@ -2,7 +2,7 @@
 TODO:
 1. Install dependencies DONE
 2. Import dependencies DONE
-3. Setup webcam and canvas
+3. Setup webcam and canvas DONE
 4. Define references to those
 5. Load facemesh
 6. Detect function
