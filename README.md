@@ -1,6 +1,6 @@
 # Face Landmark Detection
 
-Learn how to use face landmark detection using Tensorflow.JS and ReactJS
+Learn how to use face landmark detection using Tensorflow.js and React.js
 
 Resources:
 - https://www.npmjs.com/package/@tensorflow-models/face-landmarks-detection
