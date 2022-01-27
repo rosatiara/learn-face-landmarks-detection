@@ -14,11 +14,13 @@ TODO:
 */
 
 // importing dependencies needed
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import './App.css';
 import * as tf from "@tensorflow/tfjs";
-import * as facemesh from "@tensorflow-models/facemesh";
+import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
+
+import { drawMesh } from './utils';
 
 function App() {
   // references
@@ -26,11 +28,43 @@ function App() {
   const canvasRef = useRef(null);
 
   // load facemesh
-  const loadFacemesh = async()=>{
-    const net = await facemesh.load({
-      inputResolution:{width:640, height:480}, scale:0.8
-    })
+  const runFacemesh = async () =>{
+    const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
+    setInterval(()=>{
+      detect(net)
+    },10) // running every 100ms
+  };
+  const detect = async(net)=> {
+    // detect if camera is running
+    if(typeof webcamRef.current !== "undefined" &&
+    webcamRef.current !== null &&
+    webcamRef.current.video.readyState === 4
+    ){
+      // get video properties
+      const video = webcamRef.current.video;
+      const videoWidth = webcamRef.current.video.videoWidth;
+      const videoHeight = webcamRef.current.video.videoHeight;
+
+      // set video properties (width & height)
+      webcamRef.current.video.width = videoWidth;
+      webcamRef.current.video.height = videoHeight;
+
+      // set canvas properties
+      canvasRef.current.width = videoWidth;
+      canvasRef.current.height = videoHeight;
+
+      // perform detection
+      const face = await net.estimateFaces({input:video})
+      console.log(face)
+
+
+      // get canvas context for drawing
+      const ctx = canvasRef.current.getContext("2d")
+      requestAnimationFrame(()=>{drawMesh(face,ctx)})
+    }
   }
+
+  useEffect(()=>{runFacemesh()}, [])
 
   return (
     <div className="App">
